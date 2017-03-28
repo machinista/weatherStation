@@ -30,6 +30,7 @@ def main():
         fcTemp = (fcDataDict['SiteRep']['DV']['Location']['Period'][1]['Rep'][3]['T'])
         fcPp = (fcDataDict['SiteRep']['DV']['Location']['Period'][1]['Rep'][3]['Pp'])
         fcWeather = (fcDataDict['SiteRep']['DV']['Location']['Period'][1]['Rep'][3]['W'])
+        
         print '\n'
         print '**** New Data ****'
         print 'Forecast Date = ' + fcDate
@@ -39,23 +40,20 @@ def main():
         print 'Weather type = ' + fcWeather
         weather = weatherType[fcWeather]
         print weather
+        
         msg = 'Forecast: 9AM tomorrow'
-        write_string(msg, offset_x = 7, kerning = False)      
+        #write_string(msg, offset_x = 7, kerning = False)      
         write_string(weather, offset_y = 0, kerning = False)
         write_string('T: ' + fcTemp, offset_y = 7, kerning = False)
         write_string('R% ' + fcPp, offset_y = 14, kerning = False)
    
         for updateInterval in range(900):
-            for scrollCount in range(len(msg)*5):
-                scroll()
-                show()
-                time.sleep(0.03)
-        
+            show()
+            time.sleep(4)       
             for pixelRow in range(7):
                 scroll_vertical()
                 show()
                 time.sleep(0.03)
-            time.sleep(4)
         clear()
 
 if __name__ == '__main__':
